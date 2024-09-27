@@ -6792,6 +6792,7 @@ GameObject:
   - component: {fileID: 167227265}
   - component: {fileID: 167227264}
   - component: {fileID: 167227266}
+  - component: {fileID: 167227267}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6837,6 +6838,8 @@ MonoBehaviour:
   - {fileID: 1751409711}
   - {fileID: 1533860821}
   randomNumber: 0
+  adminPanel: {fileID: 0}
+  isGameOn: 0
   frontObjects: []
 --- !u!4 &167227265
 Transform:
@@ -6867,6 +6870,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startEventSO: {fileID: 11400000, guid: abf3893ce835a394084d9c91e5ae796a, type: 2}
   StartButton: {fileID: 123334961}
+--- !u!114 &167227267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167227263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11842c448d5538b44b107895b1a0ad93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  adminSliders:
+  - {fileID: 825309742}
+  - {fileID: 387297356}
 --- !u!224 &167431989 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 212830065060684909, guid: 1b7b626afd8a31c46995460f2ec3da8a, type: 3}

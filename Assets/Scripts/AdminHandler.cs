@@ -7,7 +7,7 @@ public class AdminHandler : MonoBehaviour
 {
     public static AdminHandler Instance;
     public Slider[] adminSliders;
-    private int  time,questionSet,particles;
+    private int  time,penSpeed,particles;
     void Start()
     {
         Instance = this;
@@ -19,11 +19,11 @@ public class AdminHandler : MonoBehaviour
     private void OnEnable()
     {
         time = PlayerPrefs.GetInt("Time", 5);
-        questionSet = PlayerPrefs.GetInt("QuestionSet", 5);
+        penSpeed = PlayerPrefs.GetInt("PenSpeed", 5);
         particles = PlayerPrefs.GetInt("Particle", 0);
 
         UpdateTimeSlider();
-        UpdateQuestionSlider();
+        UpdatePenSpeedSlider();
         UpdateParticleSlider();
 
     }
@@ -48,14 +48,14 @@ public class AdminHandler : MonoBehaviour
 
     }
 
-    public void UpdateQuestionSlider() 
+    public void UpdatePenSpeedSlider() 
     {
-        if (questionSet == 5)
+        if (penSpeed == 5)
         {
             adminSliders[0].value = 1;
 
         }
-        else if (questionSet == 7)
+        else if (penSpeed == 7)
         {
             adminSliders[0].value = 2;
 

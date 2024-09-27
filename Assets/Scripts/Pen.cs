@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Pen : MonoBehaviour
 {
+    public static Pen Instance { get; private set; }
     public int selectedNumber;
     public WayPoints wayPoint;
     public float speed = 50f;
@@ -18,13 +19,15 @@ public class Pen : MonoBehaviour
 
     private void Start()
     {
-       
+       Instance = this;
         target = wayPoint.points[0];
        
+    }
 
-
-
-
+    public void SetPenSpeed(int speed) 
+    {
+        this.speed = speed;
+    
     }
 
     private void Update()

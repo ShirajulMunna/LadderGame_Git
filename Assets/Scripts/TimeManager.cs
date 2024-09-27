@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 public class TimeManager : MonoBehaviour
 {
+    public static TimeManager Instance;
     public event EventHandler onTimeFinished;
     public float totalTime = 10f; // Total time for the countdown
     [SerializeField] private Image sliderImage; // Image used as a slider
