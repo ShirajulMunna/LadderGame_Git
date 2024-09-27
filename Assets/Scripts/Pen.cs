@@ -20,15 +20,12 @@ public class Pen : MonoBehaviour
     private void Start()
     {
        Instance = this;
-        target = wayPoint.points[0];
+       target = wayPoint.points[0];
+        speed = GameController.instance.speed;
        
     }
 
-    public void SetPenSpeed(int speed) 
-    {
-        this.speed = speed;
-    
-    }
+   
 
     private void Update()
     {

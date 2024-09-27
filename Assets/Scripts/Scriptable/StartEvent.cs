@@ -18,6 +18,7 @@ public class StartEvent : MonoBehaviour
    public void StartGame()
    {
         startEventSO.RaiseEvent();
+        GameController.instance.isGameOn = true;
    }
 
 

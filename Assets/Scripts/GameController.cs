@@ -16,7 +16,9 @@ public class GameController : MonoBehaviour
     public int randomNumber;
     public GameObject adminPanel;
     public bool isGameOn;
-
+    public GameObject[] particles;
+    public int paricleValue;
+    public int speed;
 
     [SerializeField]  private List<GameObject> frontObjects = new List<GameObject>();
 
@@ -43,11 +45,21 @@ public class GameController : MonoBehaviour
 
 
     }
+    public void SetparticleValue(int value)
+    {
+        this.paricleValue = value;
 
+
+    }
+    public void SetPenSpeed(int speed)
+    {
+        this.speed = speed;
+
+    }
 
     private void OnButtonClick(Button clickedButton)
     {
-       
+        TimeManager.Instance.isTimeStarted = true;
         foreach (GameObject obj in frontObjects)
         {
             Button button = obj.GetComponent<Button>();
@@ -82,7 +94,8 @@ public class GameController : MonoBehaviour
 
     public void LadderSelection() 
     {
-       
+        TimeManager.Instance.StartTime();
+
         selectedItems[randomNumber].SetActive(true);
         ladders[randomNumber].SetActive(true);
         l_wayPoints[randomNumber].SetActive(true);

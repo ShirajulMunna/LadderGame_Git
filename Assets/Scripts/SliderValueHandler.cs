@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class SliderValueHandler : MonoBehaviour
 {
     public UnityEngine.UI.Slider[] sliders;
-    public int question_1, question_2, question_3;
+    public int speed_1, speed_2, speed_3;
     public int time_1,time_2,time_3;
     
     //hskhskfhk
@@ -32,14 +32,18 @@ public class SliderValueHandler : MonoBehaviour
         switch (sliderindex) 
         {
             case 0:
-                Debug.Log("Set question here");
+                Debug.Log("Set time here");
 
-                SetQuestion(sliderindex);
+                
+                SetTime(sliderindex);
+
                 break;
 
             case 1:
-                Debug.Log("Set Time here");
-                SetTime(sliderindex);
+                Debug.Log("Set penspeed here");
+                
+                SetPenSpeed(sliderindex);
+
                 break;
             case 2:
                 Debug.Log("Set particle here");
@@ -52,27 +56,29 @@ public class SliderValueHandler : MonoBehaviour
 
     }
 
-    public void SetQuestion(int index) 
+    public void SetPenSpeed(int index) 
     {
         if (sliders[index].value == 1)
         {
-            Manager.Instance.SetQuestionThreshHold(question_1);
-            PlayerPrefs.SetInt("QuestionSet", question_1);
+            GameController.instance.SetPenSpeed(speed_1);
+            PlayerPrefs.SetInt("PenSpeed", speed_1);
 
 
         }
         else if (sliders[index].value == 2)
         {
-            Manager.Instance.SetQuestionThreshHold(question_2);
-            PlayerPrefs.SetInt("QuestionSet", question_2);
+            
+            GameController.instance.SetPenSpeed(speed_2);
+            PlayerPrefs.SetInt("PenSpeed", speed_2);
 
 
 
         }
         else 
         {
-            Manager.Instance.SetQuestionThreshHold(question_3);
-            PlayerPrefs.SetInt("QuestionSet", question_3);
+            
+            GameController.instance.SetPenSpeed(speed_3);
+            PlayerPrefs.SetInt("PenSpeed", speed_3);
 
 
         }
@@ -98,7 +104,7 @@ public class SliderValueHandler : MonoBehaviour
         else 
         {
             TimeManager.Instance.SetTime(time_3);
-            PlayerPrefs.SetInt("Time", question_1);
+            PlayerPrefs.SetInt("Time", time_3);
 
 
         }
@@ -109,12 +115,12 @@ public class SliderValueHandler : MonoBehaviour
     {
         if (sliders[index].value == 1)
         {
-            Manager.Instance.SetparticleValue(0);
+            GameController.instance.SetparticleValue(0);
             PlayerPrefs.SetInt("Particle", 0);
         }
         else if (sliders[index].value == 3)
         {
-            Manager.Instance.SetparticleValue(1);
+            GameController.instance.SetparticleValue(1);
             PlayerPrefs.SetInt("Particle", 1);
 
         }

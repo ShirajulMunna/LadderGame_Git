@@ -50,12 +50,12 @@ public class AdminHandler : MonoBehaviour
 
     public void UpdatePenSpeedSlider() 
     {
-        if (penSpeed == 5)
+        if (penSpeed == 2)
         {
             adminSliders[0].value = 1;
 
         }
-        else if (penSpeed == 7)
+        else if (penSpeed == 3)
         {
             adminSliders[0].value = 2;
 

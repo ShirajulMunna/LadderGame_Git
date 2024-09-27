@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -14,29 +15,43 @@ public class TimeManager : MonoBehaviour
     [SerializeField] private Image sliderImage; // Image used as a slider
     
     public TextMeshProUGUI timerTxt;
-    
+    public bool isTimeStarted;
+    public float fillAmount;
 
-    void Start()
+
+    private void Start()
     {
+        Instance = this;
+    }
+    public void StartTime() 
+    {
+       
         StartCoroutine(StartCountdown());
-
+      
     }
     public void SetTime(int time)
     {
         this.totalTime = time;
-       
+      
+    }
 
+    private void Update()
+    {
+        if (isTimeStarted) 
+        {
+            sliderImage.fillAmount = fillAmount;
 
+        }
     }
 
 
- 
+
 
     private IEnumerator StartCountdown()
     {
         float remainingTime = totalTime;
 
-        while (remainingTime > 0)
+        while (remainingTime > 0 && !isTimeStarted)
         {
             // Decrease the remaining time
             remainingTime -= Time.deltaTime;
@@ -44,7 +59,7 @@ public class TimeManager : MonoBehaviour
             timerTxt.text = round.ToString();
 
             // Update the slider's fill amount
-            float fillAmount = remainingTime / totalTime;
+             fillAmount = remainingTime / totalTime;
             sliderImage.fillAmount = fillAmount;
 
             // Wait for the next frame
@@ -60,7 +75,7 @@ public class TimeManager : MonoBehaviour
 
     private void TimerEnded()
     {
-        Debug.Log("Countdown finished!");
+        
         // Add additional logic for when the timer ends, if needed
 
         GameController.instance.DisableButtons();
