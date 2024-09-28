@@ -8649,7 +8649,7 @@ GameObject:
   - component: {fileID: 197547586}
   - component: {fileID: 197547585}
   m_Layer: 5
-  m_Name: Image_2
+  m_Name: Title 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19965,7 +19965,7 @@ GameObject:
   - component: {fileID: 569886244}
   - component: {fileID: 569886243}
   m_Layer: 5
-  m_Name: Image_1
+  m_Name: Main Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
