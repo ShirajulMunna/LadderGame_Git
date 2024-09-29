@@ -115,12 +115,12 @@ public class SliderValueHandler : MonoBehaviour
     {
         if (sliders[index].value == 1)
         {
-            GameController.instance.SetparticleValue(0);
+            Pen.Instance.SetparticleValue(0);
             PlayerPrefs.SetInt("Particle", 0);
         }
         else if (sliders[index].value == 3)
         {
-            GameController.instance.SetparticleValue(1);
+            Pen.Instance.SetparticleValue(1);
             PlayerPrefs.SetInt("Particle", 1);
 
         }

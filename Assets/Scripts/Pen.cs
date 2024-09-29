@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class Pen : MonoBehaviour
 {
@@ -12,20 +13,31 @@ public class Pen : MonoBehaviour
 
     public Transform target;
     public int wavePointIndex = 0;
+    
     public GameObject[] particlePrefabs;
     public Image[] giftBoxes;
-    public Image[] giftItems;
-   
+    public Image giftItems;
+    public Sprite[] items;
+    
+
+    public GameObject blackImgage;
+
+    public GameObject[] particles;
+    public int paricleValue;
+
 
     private void Start()
     {
        Instance = this;
        target = wayPoint.points[0];
-        speed = GameController.instance.speed;
-       
+       speed = GameController.instance.speed;
+       paricleValue = PlayerPrefs.GetInt("Particle", 0);
+
+
     }
 
-   
+
+
 
     private void Update()
     {
@@ -38,7 +50,6 @@ public class Pen : MonoBehaviour
             GetNextPoint();
             Debug.Log("Reached");
         }
-
        
     }
 
@@ -49,9 +60,22 @@ public class Pen : MonoBehaviour
             Debug.Log("Fucking End");
 
             Debug.Log(selectedNumber);
-            giftBoxes[selectedNumber].gameObject.SetActive(false);
-            particlePrefabs[selectedNumber].SetActive(true);
-            giftItems[selectedNumber].gameObject.SetActive(true);
+
+            giftBoxes[selectedNumber].GetComponent<RectTransform>().DOShakePosition(2f, 10f, 10, 90, true).OnComplete(() => {
+
+                giftBoxes[selectedNumber].GetComponent<RectTransform>().DOMove(new Vector2(0, 0), 0.6f).SetEase(Ease.Flash).OnComplete(() =>
+                {
+                    AudioManager.Instance.PlayLastPageSound();
+                    ActivateParticles();
+                    giftBoxes[selectedNumber].gameObject.SetActive(false);
+                    blackImgage.SetActive(true);
+                    giftItems.gameObject.SetActive(true);
+                    giftItems.GetComponent<Image>().sprite = items[Random.Range(0, items.Length)];
+
+                });
+
+            });
+
             Destroy(gameObject);
             return;
         }
@@ -60,7 +84,29 @@ public class Pen : MonoBehaviour
         target = wayPoint.points[wavePointIndex];
     }
 
-   
+    public void ActivateParticles()
+    {
+        if (paricleValue == 0)
+        {
+            particles[0].SetActive(true);
 
-   
+        }
+        else
+        {
+            particles[1].SetActive(true);
+
+        }
+
+    }
+
+    public void SetparticleValue(int value)
+    {
+        this.paricleValue = value;
+
+
+    }
+
+
+
+
 }

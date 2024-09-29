@@ -1,9 +1,11 @@
- using Microsoft.Unity.VisualStudio.Editor;
+
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static UnityEngine.ParticleSystem;
 
 public class GameController : MonoBehaviour
 {
@@ -16,9 +18,10 @@ public class GameController : MonoBehaviour
     public int randomNumber;
     public GameObject adminPanel;
     public bool isGameOn;
-    public GameObject[] particles;
-    public int paricleValue;
+   
     public int speed;
+    public Button main;
+
 
     [SerializeField]  private List<GameObject> frontObjects = new List<GameObject>();
 
@@ -26,9 +29,7 @@ public class GameController : MonoBehaviour
     {
         instance = this;
         randomNumber = Random.Range(0, ladders.Length);
-
-       
-
+        main.onClick.AddListener(SceneLoad);
 
 
     }
@@ -45,17 +46,14 @@ public class GameController : MonoBehaviour
 
 
     }
-    public void SetparticleValue(int value)
-    {
-        this.paricleValue = value;
-
-
-    }
+  
     public void SetPenSpeed(int speed)
     {
         this.speed = speed;
 
     }
+
+  
 
     private void OnButtonClick(Button clickedButton)
     {
@@ -120,6 +118,12 @@ public class GameController : MonoBehaviour
 
     }
 
+    public void SceneLoad() 
+    {
+        SceneManager.LoadScene(0);
+    
+    }
+
     public void Update()
     {
         if (!isGameOn)
@@ -130,6 +134,12 @@ public class GameController : MonoBehaviour
                 adminPanel.SetActive(true);
 
             }
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.F4))
+        {
+            Application.Quit();
 
         }
     }

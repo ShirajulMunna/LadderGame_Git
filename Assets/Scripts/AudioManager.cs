@@ -8,7 +8,7 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
     public AudioChannelSO audioChannelSO;
     public AudioClip[] audioClips;
-    private AudioSource audioSource;
+    private AudioSource audioSource,audioSource_2;
     public Button[] allButtons;
 
 
@@ -16,6 +16,7 @@ public class AudioManager : MonoBehaviour
     {
       Instance = this;
       audioSource=GetComponent<AudioSource>();
+      audioSource_2 = GetComponent<AudioSource>();
 
         for (int i = 0; i < allButtons.Length; i++) 
         {
@@ -37,6 +38,13 @@ public class AudioManager : MonoBehaviour
     {        
        audioSource.PlayOneShot(audioClips[0]);                 
     
+    }
+
+    public void PlayLastPageSound()
+    {
+        audioSource.Stop();
+        audioSource_2.PlayOneShot(audioClips[1]);
+
     }
 
     public void TriggerButtonSound() 
